@@ -1,0 +1,2559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Fire Festival — Bugum Chugu | Keeping the Flame of Our Heritage Alive</title>
+  <meta name="description" content="The history, meaning, and living memory of the Fire Festival (Bugum Chugu) — and a place for the community to share their own.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root{
+    --char: #120D0A;
+    --char-soft: #1A130F;
+    --surface: #1F1611;
+    --surface-2: #281D16;
+    --line: rgba(232,220,200,0.10);
+    --parchment: #E8DCC8;
+    --parchment-dim: #B8AC97;
+    --ember: #D4622E;
+    --ember-deep: #8B2F1F;
+    --gold: #F2A65A;
+    --gold-soft: rgba(242,166,90,0.35);
+
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --container: 1180px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *{margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+    html{scroll-behavior: smooth;
+    }
+    body{
+    background: var(--char);
+    color: var(--parchment);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    }
+    img{max-width: 100%;
+    display: block;
+    }
+    a{color: inherit;
+    text-decoration: none;
+    }
+    button{font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+    }
+    ul{list-style: none;
+    }
+
+    ::selection{background: var(--ember-deep);
+    color: var(--parchment);
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+    *{animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+    }
+    }
+
+:focus-visible{
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+    }
+
+    .container{
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 24px;
+    }
+
+    .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ember);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    }
+    .eyebrow::before{
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--ember);
+    display: inline-block;
+    }
+
+    .section-heading{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2rem, 4.2vw, 3.4rem);
+    line-height: 1.08;
+    color: var(--parchment);
+    margin-top: 14px;
+    letter-spacing: -0.01em;
+    }
+
+    .section-pad{
+    padding: 120px 0;
+    position: relative;
+    }
+    @media(max-width:768px){
+    .section-pad{padding: 80px 0;
+    }
+    }
+
+    .btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 32px;
+    border-radius: 3px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease);
+    white-space: nowrap;
+    }
+    .btn-primary{
+    background: linear-gradient(135deg, var(--ember) 0%, var(--ember-deep) 100%);
+    color: #fff;
+    box-shadow: 0 8px 24px -8px rgba(212,98,46,0.55);
+    }
+    .btn-primary:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -8px rgba(212,98,46,0.7);
+    }
+    .btn-ghost{
+    background: transparent;
+    color: var(--parchment);
+    border: 1px solid var(--line);
+    }
+    .btn-ghost:hover{
+    border-color: var(--gold-soft);
+    background: rgba(242,166,90,0.06);
+    }
+
+    /* reveal-on-scroll base */
+    .reveal{
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+    .reveal.is-visible{
+    opacity: 1;
+    transform: translateY(0);
+    }
+    .reveal-delay-1{transition-delay: 0.12s;
+    }
+    .reveal-delay-2{transition-delay: 0.24s;
+    }
+    .reveal-delay-3{transition-delay: 0.36s;
+    }
+
+    /* ============================================
+   SKIP LINK
+   ============================================ */
+    .skip-link{
+    position: absolute;
+    left: -999px;
+    top: 0;
+    background: var(--ember);
+    color: #fff;
+    padding: 10px 18px;
+    z-index: 300;
+    font-family: var(--font-body);
+    font-weight: 600;
+    }
+    .skip-link:focus{ left: 12px;
+    top: 12px;
+    }
+
+    /* ============================================
+   PRELOADER
+   ============================================ */
+    #pageLoader{
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: var(--char);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s var(--ease), visibility 0.6s var(--ease);
+    }
+    #pageLoader.loader-hidden{
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    }
+    .loader-flame{
+    position: relative;
+    width: 64px;
+    height: 64px;
+    }
+    .loader-flame svg{
+    width: 100%;
+    height: 100%;
+    }
+    .loader-flame .flame-path{
+    fill: var(--ember);
+    transform-origin: 50% 90%;
+    animation: flameFlicker 1.1s ease-in-out infinite;
+    filter: drop-shadow(0 0 14px var(--gold-soft));
+    }
+    @keyframes flameFlicker{
+    0%, 100%{ transform: scale(1, 1) rotate(0deg);
+    opacity: 1;
+    }
+    25%{ transform: scale(0.94, 1.05) rotate(-2deg);
+    opacity: 0.92;
+    }
+    50%{ transform: scale(1.05, 0.96) rotate(1deg);
+    opacity: 1;
+    }
+    75%{ transform: scale(0.97, 1.02) rotate(-1deg);
+    opacity: 0.95;
+    }
+    }
+    .loader-label{
+    position: absolute;
+    top: calc(100% + 18px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--parchment-dim);
+    }
+    .loader-label::after{
+    content: '';
+    display: inline-block;
+    width: 1ch;
+    }
+    @media (prefers-reduced-motion: reduce){
+    .loader-flame .flame-path{ animation: none;
+    }
+    }
+
+    /* ============================================
+   HERO
+   ============================================ */
+    .hero{
+    position: relative;
+    height: 100vh;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #0A0706;
+    }
+    .hero-bg{
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    }
+    .hero-bg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+    filter: saturate(1.05) contrast(1.05);
+    opacity: 0.55;
+    }
+    /* signature: drifting ember-glow field, echoing torches searching in the dark */
+    .hero-embers{
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    }
+    .ember-glow{
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.55;
+    background: radial-gradient(circle, rgba(242,166,90,0.9) 0%, rgba(212,98,46,0.4) 45%, transparent 75%);
+    animation: driftGlow 22s ease-in-out infinite;
+    }
+    .ember-glow:nth-child(1){ width: 340px;
+    height: 340px;
+    left: 8%;
+    top: 30%;
+    animation-duration: 26s;
+    }
+    .ember-glow:nth-child(2){ width: 260px;
+    height: 260px;
+    left: 62%;
+    top: 15%;
+    animation-duration: 31s;
+    animation-delay: -6s;
+    }
+    .ember-glow:nth-child(3){ width: 300px;
+    height: 300px;
+    left: 75%;
+    top: 55%;
+    animation-duration: 24s;
+    animation-delay: -14s;
+    }
+    .ember-glow:nth-child(4){ width: 200px;
+    height: 200px;
+    left: 35%;
+    top: 65%;
+    animation-duration: 29s;
+    animation-delay: -3s;
+    }
+    @keyframes driftGlow{
+    0%,100%{ transform: translate(0,0) scale(1);
+    }
+    25%{ transform: translate(40px,-30px) scale(1.15);
+    }
+    50%{ transform: translate(-20px,20px) scale(0.9);
+    }
+    75%{ transform: translate(25px,35px) scale(1.05);
+    }
+    }
+    .hero-overlay{
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+    linear-gradient(to bottom, rgba(10,7,6,0.55) 0%, rgba(10,7,6,0.35) 40%, rgba(10,7,6,0.92) 100%),
+    linear-gradient(to right, rgba(10,7,6,0.65) 0%, rgba(10,7,6,0.1) 45%, rgba(10,7,6,0.45) 100%);
+    }
+    .hero-content{
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    }
+    .hero-eyebrow{
+    opacity: 0;
+    animation: heroRise 1s var(--ease) 0.2s forwards;
+    }
+    .hero-title{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(3rem, 9vw, 7rem);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin-top: 18px;
+    color: var(--parchment);
+    text-shadow: 0 4px 40px rgba(212,98,46,0.25);
+    opacity: 0;
+    animation: heroRise 1.1s var(--ease) 0.4s forwards;
+    }
+    .hero-title em{
+    font-style: italic;
+    font-weight: 500;
+    background: linear-gradient(120deg, var(--gold) 0%, var(--ember) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    }
+    .hero-subtitle{
+    font-size: clamp(1.05rem, 2vw, 1.4rem);
+    color: var(--parchment-dim);
+    margin-top: 22px;
+    max-width: 540px;
+    font-weight: 400;
+    opacity: 0;
+    animation: heroRise 1.1s var(--ease) 0.6s forwards;
+    }
+    .hero-actions{
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: heroRise 1.1s var(--ease) 0.8s forwards;
+    }
+    @keyframes heroRise{
+    from{ opacity: 0;
+    transform: translateY(22px);
+    }
+    to{ opacity: 1;
+    transform: translateY(0);
+    }
+    }
+    .scroll-indicator{
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--parchment-dim);
+    opacity: 0;
+    animation: heroRise 1s var(--ease) 1.1s forwards;
+    }
+    .scroll-indicator .line{
+    width: 1px;
+    height: 34px;
+    background: linear-gradient(to bottom, var(--gold) 0%, transparent 100%);
+    position: relative;
+    overflow: hidden;
+    }
+    .scroll-indicator .line::after{
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gold);
+    animation: scrollTrace 2s ease-in-out infinite;
+    }
+    @keyframes scrollTrace{
+    0%{ top: -100%;
+    }
+    60%{ top: 100%;
+    }
+    100%{ top: 100%;
+    }
+    }
+
+    /* ============================================
+   FESTIVAL STORY
+   ============================================ */
+    .story-section{
+    background: var(--char);
+    position: relative;
+    }
+    .story-grid{
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 50px;
+    }
+    .story-text p{
+    font-size: 1.05rem;
+    color: var(--parchment-dim);
+    margin-top: 18px;
+    max-width: 520px;
+    }
+    .story-text p:first-of-type{
+    margin-top: 28px;
+    font-size: 1.15rem;
+    color: var(--parchment);
+    }
+    .story-quote{
+    margin-top: 30px;
+    padding-left: 22px;
+    border-left: 2px solid var(--ember);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--gold);
+    font-weight: 500;
+    max-width: 480px;
+    }
+    .story-media{
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    box-shadow: 0 30px 70px -20px rgba(0,0,0,0.6);
+    }
+    .story-media img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+    .story-media::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(18,13,10,0.55) 0%, transparent 50%);
+    }
+    .story-media-caption{
+    position: absolute;
+    bottom: 18px;
+    left: 20px;
+    right: 20px;
+    z-index: 2;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--parchment-dim);
+    }
+    @media(max-width:900px){
+    .story-grid{
+    grid-template-columns: 1fr;
+    gap: 44px;
+    }
+    .story-media{ order: -1;
+    aspect-ratio: 16/10;
+    }
+    }
+
+    /* ============================================
+   TIMELINE
+   ============================================ */
+    .timeline-section{
+    background: var(--char-soft);
+    position: relative;
+    }
+    .timeline-section .section-heading{ max-width: 600px;
+    }
+    .timeline-wrap{
+    position: relative;
+    margin-top: 70px;
+    padding-left: 6px;
+    }
+    .timeline-spine{
+    position: absolute;
+    left: 9px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--line) 0%, var(--line) 100%);
+    }
+    .timeline-spine-fill{
+    position: absolute;
+    left: 9px;
+    top: 0;
+    width: 2px;
+    height: 0%;
+    background: linear-gradient(to bottom, var(--ember) 0%, var(--gold) 100%);
+    transition: height 0.1s linear;
+    }
+    .timeline-ember{
+    position: absolute;
+    left: 9px;
+    top: 0;
+    width: 14px;
+    height: 14px;
+    margin-left: -6px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 16px 4px var(--gold-soft), 0 0 4px 1px var(--gold);
+    transform: translateY(-50%);
+    transition: top 0.1s linear;
+    z-index: 2;
+    }
+    .timeline-item{
+    position: relative;
+    padding-left: 48px;
+    padding-bottom: 70px;
+    }
+    .timeline-item:last-child{ padding-bottom: 0;
+    }
+
+    .timeline-era{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ember);
+    }
+    .timeline-title{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--parchment);
+    margin-top: 8px;
+    }
+    .timeline-desc{
+    color: var(--parchment-dim);
+    margin-top: 10px;
+    max-width: 560px;
+    font-size: 0.98rem;
+    }
+
+    /* ============================================
+   VIDEO SHOWCASE
+   ============================================ */
+    .video-section{ background: var(--char);
+    }
+    .video-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 50px;
+    }
+    .video-card{
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    cursor: pointer;
+    background: var(--surface);
+    }
+    .video-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease), filter 0.6s var(--ease);
+    }
+    .video-card::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(18,13,10,0.75) 0%, rgba(18,13,10,0.1) 55%);
+    transition: background 0.4s var(--ease);
+    }
+    .video-card:hover img{ transform: scale(1.08);
+    filter: brightness(0.75);
+    }
+    .video-play{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 62px;
+    height: 62px;
+    margin: -31px 0 0 -31px;
+    border-radius: 50%;
+    background: rgba(232,220,200,0.12);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(232,220,200,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: transform 0.4s var(--ease), background 0.4s var(--ease);
+    }
+    .video-card:hover .video-play{
+    transform: translate(-50%,-50%) scale(1.12);
+    background: var(--ember);
+    border-color: var(--ember);
+    }
+    .video-play svg{ width: 20px;
+    height: 20px;
+    fill: var(--parchment);
+    margin-left: 2px;
+    }
+    .video-label{
+    position: absolute;
+    bottom: 16px;
+    left: 18px;
+    right: 18px;
+    z-index: 2;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--parchment);
+    }
+    .video-label span{
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 4px;
+    font-weight: 500;
+    }
+    @media(max-width:900px){
+    .video-grid{ grid-template-columns: 1fr 1fr;
+    }
+    }
+    @media(max-width:600px){
+    .video-grid{ grid-template-columns: 1fr;
+    }
+    }
+
+    /* Video / Lightbox Modal (shared) */
+    .modal-overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    background: rgba(8,6,5,0.94);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s var(--ease), visibility 0.35s var(--ease);
+    padding: 20px;
+    }
+    .modal-overlay.is-open{
+    opacity: 1;
+    visibility: visible;
+    }
+    .modal-close{
+    position: absolute;
+    top: 22px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(232,220,200,0.08);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.3s, transform 0.3s;
+    }
+    .modal-close:hover{ background: var(--ember);
+    transform: rotate(90deg);
+    }
+    .modal-close svg{ width: 18px;
+    height: 18px;
+    stroke: var(--parchment);
+    }
+
+    .video-modal-content{
+    position: relative;
+    width: min(94vw, 1100px);
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 6px;
+    overflow: hidden;
+    transform: scale(0.92);
+    transition: transform 0.4s var(--ease);
+    }
+    .modal-overlay.is-open .video-modal-content{ transform: scale(1);
+    }
+    .video-modal-content video,
+    .video-modal-content iframe{
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+    }
+
+    /* ============================================
+   GALLERY
+   ============================================ */
+    .gallery-section{ background: var(--char-soft);
+    }
+    .gallery-grid{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 10px;
+    gap: 18px;
+    }
+    .gallery-item{
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--surface);
+    }
+    .gallery-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease), filter 0.4s;
+    }
+    .gallery-item:hover img{ transform: scale(1.06);
+    filter: brightness(0.8);
+    }
+    .gallery-item::after{
+    content: '⤢';
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(18,13,10,0.5);
+    color: var(--parchment);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    }
+    .gallery-item:hover::after{ opacity: 1;
+    }
+
+    .gallery-item.span-tall{ grid-row: span 30;
+    }
+    .gallery-item.span-short{ grid-row: span 20;
+    }
+    .gallery-item.span-mid{ grid-row: span 24;
+    }
+
+    @media(max-width:900px){
+    .gallery-grid{ grid-template-columns: repeat(2, 1fr);
+    }
+    }
+    @media(max-width:560px){
+    .gallery-grid{ grid-template-columns: 1fr;
+    gap: 14px;
+    }
+    .gallery-item.span-tall, .gallery-item.span-short, .gallery-item.span-mid{ grid-row: span 1;
+    aspect-ratio: 4/3;
+    }
+    }
+
+    /* Lightbox */
+    .lightbox-content{
+    position: relative;
+    width: min(92vw, 1000px);
+    max-height: 88vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    .lightbox-content img{
+    max-width: 100%;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: 4px;
+    transform: scale(0.94);
+    transition: transform 0.4s var(--ease);
+    }
+    .modal-overlay.is-open .lightbox-content img{ transform: scale(1);
+    }
+    .lightbox-nav{
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(232,220,200,0.08);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.3s;
+    }
+    .lightbox-nav:hover{ background: var(--ember);
+    }
+    .lightbox-nav svg{ width: 20px;
+    height: 20px;
+    stroke: var(--parchment);
+    }
+    .lightbox-prev{ left: max(16px, calc(50% - min(46vw, 500px) - 80px));
+    }
+    .lightbox-next{ right: max(16px, calc(50% - min(46vw, 500px) - 80px));
+    }
+    @media(max-width:760px){
+    .lightbox-prev{ left: 10px;
+    }
+    .lightbox-next{ right: 10px;
+    }
+    }
+    .lightbox-counter{
+    position: absolute;
+    bottom: -38px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--parchment-dim);
+    }
+
+    /* ============================================
+   CULTURAL IMPORTANCE
+   ============================================ */
+    .culture-section{ background: var(--char);
+    }
+    .culture-grid{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+    }
+    .culture-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 32px 22px;
+    transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), background 0.4s var(--ease);
+    position: relative;
+    overflow: hidden;
+    }
+    .culture-card::before{
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: -20%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, var(--gold-soft) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    }
+    .culture-card:hover{
+    transform: translateY(-6px);
+    border-color: var(--gold-soft);
+    background: var(--surface-2);
+    }
+    .culture-card:hover::before{ opacity: 0.5;
+    }
+    .culture-icon{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ember) 0%, var(--ember-deep) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    }
+    .culture-icon svg{ width: 22px;
+    height: 22px;
+    stroke: #fff;
+    fill: none;
+    stroke-width: 1.8;
+    }
+    .culture-card h3{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--parchment);
+    position: relative;
+    z-index: 1;
+    }
+    .culture-card p{
+    font-size: 0.88rem;
+    color: var(--parchment-dim);
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
+    line-height: 1.55;
+    }
+    @media(max-width:1000px){
+    .culture-grid{ grid-template-columns: repeat(2, 1fr);
+    }
+    }
+    @media(max-width:560px){
+    .culture-grid{ grid-template-columns: 1fr;
+    }
+    }
+
+    /* ============================================
+   COMMUNITY CONTRIBUTIONS FORM
+   ============================================ */
+    .contribute-section{
+    background: var(--char-soft);
+    position: relative;
+    }
+    .contribute-intro{
+    max-width: 620px;
+    color: var(--parchment-dim);
+    margin-top: 18px;
+    font-size: 1.05rem;
+    }
+    .contribute-form{
+    margin-top: 50px;
+    max-width: 760px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: clamp(24px, 5vw, 48px);
+    }
+    .form-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    }
+    .form-group{
+    margin-bottom: 22px;
+    }
+    .form-group.full{ grid-column: 1 / -1;
+    }
+    .form-label{
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--parchment);
+    margin-bottom: 8px;
+    }
+    .form-label .req{ color: var(--ember);
+    }
+    .form-input, .form-textarea{
+    width: 100%;
+    background: var(--char-soft);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 13px 16px;
+    color: var(--parchment);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .form-input::placeholder, .form-textarea::placeholder{ color: rgba(232,220,200,0.35);
+    }
+    .form-input:focus, .form-textarea:focus{
+    outline: none;
+    border-color: var(--ember);
+    box-shadow: 0 0 0 3px rgba(212,98,46,0.15);
+    }
+    .form-textarea{ resize: vertical;
+    min-height: 120px;
+    }
+
+    .dropzone{
+    border: 2px dashed var(--line);
+    border-radius: 8px;
+    padding: 32px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+    }
+    .dropzone:hover, .dropzone.drag-over{
+    border-color: var(--ember);
+    background: rgba(212,98,46,0.06);
+    }
+    .dropzone input[type="file"]{
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    }
+    .dropzone-icon{
+    width: 38px;
+    height: 38px;
+    margin: 0 auto 12px;
+    stroke: var(--ember);
+    fill: none;
+    stroke-width: 1.6;
+    }
+    .dropzone-text{ font-size: 0.9rem;
+    color: var(--parchment-dim);
+    }
+    .dropzone-text strong{ color: var(--gold);
+    font-weight: 600;
+    }
+    .dropzone-hint{ font-size: 0.75rem;
+    color: var(--parchment-dim);
+    opacity: 0.7;
+    margin-top: 4px;
+    }
+
+    .file-previews{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+    }
+    .file-preview{
+    position: relative;
+    width: 84px;
+    height: 84px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--char-soft);
+    border: 1px solid var(--line);
+    }
+    .file-preview img, .file-preview video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+    .file-preview .file-tag{
+    position: absolute;
+    bottom: 3px;
+    left: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    background: rgba(18,13,10,0.75);
+    color: var(--gold);
+    padding: 2px 5px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    }
+    .file-preview .file-remove{
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(18,13,10,0.85);
+    color: var(--parchment);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    line-height: 1;
+    }
+    .file-preview .file-remove:hover{ background: var(--ember-deep);
+    }
+
+    .form-submit-row{
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    }
+    .form-status{
+    font-size: 0.85rem;
+    color: var(--gold);
+    opacity: 0;
+    transition: opacity 0.3s;
+    }
+    .form-status.show{ opacity: 1;
+    }
+
+    @media(max-width:640px){
+    .form-row{ grid-template-columns: 1fr;
+    }
+    }
+
+    /* ============================================
+   COMMUNITY STORIES
+   ============================================ */
+    .stories-section{ background: var(--char);
+    }
+    .stories-grid{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    }
+    .story-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 30px;
+    position: relative;
+    transition: transform 0.4s var(--ease), border-color 0.4s;
+    display: flex;
+    flex-direction: column;
+    }
+    .story-card:hover{ transform: translateY(-5px);
+    border-color: var(--gold-soft);
+    }
+    .story-card.featured{ border-color: var(--ember);
+    }
+    .story-card.featured::before{
+    content: 'Featured';
+    position: absolute;
+    top: 0;
+    right: 24px;
+    transform: translateY(-50%);
+    background: var(--ember);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    }
+    .story-quote-mark{
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    color: var(--ember);
+    line-height: 0.5;
+    opacity: 0.7;
+    }
+    .story-card-text{
+    font-size: 0.97rem;
+    color: var(--parchment-dim);
+    flex-grow: 1;
+    margin-top: 6px;
+    }
+    .story-card-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    }
+    .story-card-author{ display: flex;
+    align-items: center;
+    gap: 10px;
+    }
+    .author-avatar{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ember) 0%, var(--ember-deep) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #fff;
+    flex-shrink: 0;
+    }
+    .author-name{ font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--parchment);
+    }
+    .author-town{ font-size: 0.75rem;
+    color: var(--parchment-dim);
+    }
+    .story-like-btn{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--parchment-dim);
+    padding: 6px 10px;
+    border-radius: 20px;
+    transition: color 0.25s, background 0.25s;
+    }
+    .story-like-btn svg{ width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    transition: fill 0.25s, stroke 0.25s;
+    }
+    .story-like-btn:hover{ background: rgba(212,98,46,0.1);
+    color: var(--ember);
+    }
+    .story-like-btn.liked{ color: var(--ember);
+    }
+    .story-like-btn.liked svg{ fill: var(--ember);
+    stroke: var(--ember);
+    }
+    .story-date{
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: var(--parchment-dim);
+    opacity: 0.7;
+    margin-top: 4px;
+    display: block;
+    }
+    @media(max-width:900px){
+    .stories-grid{ grid-template-columns: 1fr 1fr;
+    }
+    }
+    @media(max-width:600px){
+    .stories-grid{ grid-template-columns: 1fr;
+    }
+    }
+
+    /* ============================================
+   FESTIVAL STATISTICS
+   ============================================ */
+    .stats-section{
+    background: var(--char-soft);
+    position: relative;
+    overflow: hidden;
+    }
+    .stats-section::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(212,98,46,0.08) 0%, transparent 65%);
+    pointer-events: none;
+    }
+    .stats-grid{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+    }
+    .stat-card{
+    text-align: center;
+    padding: 30px 16px;
+    border-right: 1px solid var(--line);
+    }
+    .stat-card:last-child{ border-right: none;
+    }
+    .stat-number{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    color: var(--parchment);
+    line-height: 1;
+    background: linear-gradient(120deg, var(--parchment) 30%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    }
+    .stat-number .plus{ color: var(--ember);
+    }
+    .stat-label{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--parchment-dim);
+    margin-top: 10px;
+    }
+    @media(max-width:760px){
+    .stats-grid{ grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    }
+    .stat-card{ border-right: none;
+    border-bottom: 1px solid var(--line);
+    padding: 24px 10px;
+    }
+    .stat-card:nth-child(2n){ border-right: none;
+    }
+    }
+
+    /* ============================================
+   CTA
+   ============================================ */
+    .cta-section{
+    position: relative;
+    background:
+    radial-gradient(ellipse at 30% 20%, rgba(212,98,46,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 80%, rgba(139,47,31,0.22) 0%, transparent 55%),
+    var(--char);
+    text-align: center;
+    padding: 140px 0;
+    overflow: hidden;
+    }
+    .cta-section .eyebrow{ justify-content: center;
+    }
+    .cta-section .eyebrow::before{ display: none;
+    }
+    .cta-heading{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    margin-top: 16px;
+    color: var(--parchment);
+    letter-spacing: -0.01em;
+    }
+    .cta-text{
+    max-width: 540px;
+    margin: 20px auto 0;
+    color: var(--parchment-dim);
+    font-size: 1.05rem;
+    }
+    .cta-actions{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    }
+    @media(max-width:640px){
+    .cta-section{ padding: 90px 0;
+    }
+    }
+
+    /* ============================================
+   FOOTER
+   ============================================ */
+    .site-footer{
+    background: var(--char-soft);
+    border-top: 1px solid var(--line);
+    padding: 70px 0 30px;
+    }
+    .footer-grid{
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 50px;
+    }
+    .footer-brand{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    }
+    .footer-brand .flame-dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ember);
+    box-shadow: 0 0 12px 3px var(--gold-soft);
+    }
+    .footer-tagline{
+    margin-top: 14px;
+    color: var(--parchment-dim);
+    font-size: 0.9rem;
+    max-width: 280px;
+    line-height: 1.6;
+    }
+    .footer-col-title{
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    }
+    .footer-links li{ margin-bottom: 11px;
+    }
+    .footer-links a{
+    font-size: 0.9rem;
+    color: var(--parchment-dim);
+    transition: color 0.25s, padding-left 0.25s;
+    }
+    .footer-links a:hover{ color: var(--parchment);
+    padding-left: 4px;
+    }
+    .footer-social{
+    display: flex;
+    gap: 12px;
+    }
+    .footer-social a{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .footer-social a:hover{
+    border-color: var(--ember);
+    background: rgba(212,98,46,0.12);
+    transform: translateY(-3px);
+    }
+    .footer-social svg{ width: 16px;
+    height: 16px;
+    fill: var(--parchment-dim);
+    }
+    .footer-social a:hover svg{ fill: var(--gold);
+    }
+    .footer-bottom{
+    border-top: 1px solid var(--line);
+    padding-top: 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 0.8rem;
+    color: var(--parchment-dim);
+    }
+    @media(max-width:900px){
+    .footer-grid{ grid-template-columns: 1fr 1fr;
+    gap: 36px 24px;
+    }
+    }
+    @media(max-width:560px){
+    .footer-grid{ grid-template-columns: 1fr;
+    }
+    }
+
+    /* ============================================
+   NAV
+   ============================================ */
+    .site-nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    padding: 22px 0;
+    background: linear-gradient(to bottom, rgba(18,13,10,0.85), transparent);
+    transition: background 0.4s var(--ease), padding 0.4s var(--ease), backdrop-filter 0.4s var(--ease);
+    }
+    .site-nav.scrolled{
+    background: rgba(18,13,10,0.92);
+    backdrop-filter: blur(10px);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    }
+    .nav-inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    }
+    .nav-brand{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    }
+    .nav-brand .flame-dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ember);
+    box-shadow: 0 0 12px 3px var(--gold-soft);
+    }
+    .nav-links{
+    display: flex;
+    gap: 34px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    }
+    .nav-links a{
+    position: relative;
+    color: var(--parchment-dim);
+    transition: color 0.25s;
+    padding: 4px 0;
+    }
+    .nav-links a:hover, .nav-links a:focus-visible{ color: var(--parchment);
+    }
+    .nav-links a::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover::after{ width: 100%;
+    }
+    .nav-cta{
+    padding: 10px 22px;
+    font-size: 0.85rem;
+    }
+    .nav-toggle{
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    }
+    .nav-toggle span{
+    width: 22px;
+    height: 2px;
+    background: var(--parchment);
+    transition: transform 0.3s, opacity 0.3s;
+    }
+    @media(max-width:860px){
+    .nav-links{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(78vw, 320px);
+    background: var(--char-soft);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 40px;
+    gap: 28px;
+    transform: translateX(100%);
+    transition: transform 0.45s var(--ease);
+    box-shadow: -20px 0 60px rgba(0,0,0,0.5);
+    }
+    .nav-links.open{ transform: translateX(0);
+    }
+    .nav-cta{ display: none;
+    }
+    .nav-toggle{ display: flex;
+    z-index: 210;
+    }
+    .nav-toggle.active span:nth-child(1){ transform: translateY(7px) rotate(45deg);
+    }
+    .nav-toggle.active span:nth-child(2){ opacity: 0;
+    }
+    .nav-toggle.active span:nth-child(3){ transform: translateY(-7px) rotate(-45deg);
+    }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="pageLoader" aria-hidden="true">
+    <div class="loader-flame">
+      <svg viewBox="0 0 24 24"><path class="flame-path" d="M12 2c1.2 2.6-0.5 4-1.6 5.6C9 9.4 8 11 8 13a4 4 0 0 0 8 0c0-1-0.3-1.8-0.8-2.6 0.5 0.7 0.8 1.6 0.8 2.6a4.8 4.8 0 0 1-4.8 4.8A4.8 4.8 0 0 1 6.4 13c0-3 2-4.6 3.4-6.4C11 5.2 11.6 3.8 12 2z" /></svg>
+      <span class="loader-label">Lighting the torch</span>
+    </div>
+  </div>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-brand"><span class="flame-dot" aria-hidden="true"></span>Bugum Chugu</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#story">History</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#videos">Videos</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#stories">Community</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contribute" class="btn btn-primary nav-cta">Share Your Story</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============================================
+                     1. HERO
+                     ============================================ -->
+    <section class="hero" id="hero" aria-label="Fire Festival introduction">
+      <div class="hero-bg">
+        <!-- Replace src with an actual Fire Festival night photo or swap this <img> for a <video autoplay muted loop playsinline> -->
+        <img src="T.jpg" alt="Torches lit against the night sky during the Fire Festival" loading="eager">
+      </div>
+      <div class="hero-embers" aria-hidden="true">
+        <span class="ember-glow"></span>
+        <span class="ember-glow"></span>
+        <span class="ember-glow"></span>
+        <span class="ember-glow"></span>
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="hero-content container">
+        <span class="eyebrow hero-eyebrow">Bugum Chugu · Northern Ghana</span>
+        <h1 class="hero-title">The Fire<br><em>Festival</em></h1>
+        <p class="hero-subtitle">
+          Keeping the flame of our heritage alive — one torch, one story, one generation at a time.
+        </p>
+        <div class="hero-actions">
+          <a href="#story" class="btn btn-primary">Discover the Story</a>
+          <a href="#contribute" class="btn btn-ghost">Share Your Memory</a>
+        </div>
+      </div>
+
+      <div class="scroll-indicator" aria-hidden="true">
+        <span>celebrate With Yomyom WebBuild</span>
+        <span class="line"></span>
+      </div>
+    </section>
+
+    <!-- ============================================
+                     2. FESTIVAL STORY
+                     ============================================ -->
+    <section class="story-section section-pad" id="story">
+      <div class="container">
+        <span class="eyebrow reveal">The Legend</span>
+        <h2 class="section-heading reveal reveal-delay-1">How the Fire Festival Began</h2>
+
+        <div class="story-grid">
+          <div class="story-text reveal reveal-delay-2">
+            <p>
+              Generations ago, the infant son of a Dagomba chief disappeared from the palace without a trace. As night fell over the savanna and fear spread through the community, the chief's elders made a decision: every household would light a torch from dried guinea corn stalks, and together the people would search the darkness until the prince was found.
+            </p>
+            <p>
+              They walked the bush in long, flickering lines, calling his name, the torchlight cutting paths through the black night. By the time the search ended, fire itself had become bound to memory — to the night the whole community moved as one to bring a child home.
+            </p>
+            <p>
+              The prince, it's told, was eventually found safe. But the torches did not go out. Each year since, on the same date in the Islamic calendar, the community relights them — not in fear this time, but in remembrance.
+            </p>
+            <p class="story-quote">
+              "We do not light the torch to search anymore. We light it so we never forget how to."
+            </p>
+          </div>
+
+          <div class="story-media reveal reveal-delay-3">
+            <img src="story.jpg" alt="Illustration evoking the torchlit search across the savanna at night" loading="lazy">
+            <div class="story-media-caption">
+              Passed down through oral tradition · Dagbon, Northern Region
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+                     3. FESTIVAL TIMELINE
+                     ============================================ -->
+    <section class="timeline-section section-pad" id="timeline">
+      <div class="container">
+        <span class="eyebrow reveal">Through The Years</span>
+        <h2 class="section-heading reveal reveal-delay-1">A Tradition Through Time</h2>
+
+        <div class="timeline-wrap" id="timelineWrap">
+          <div class="timeline-spine" aria-hidden="true"></div>
+          <div class="timeline-spine-fill" id="timelineFill" aria-hidden="true"></div>
+          <div class="timeline-ember" id="timelineEmber" aria-hidden="true"></div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <span class="timeline-era">Origin</span>
+            <h3 class="timeline-title">The Search for the Lost Prince</h3>
+            <p class="timeline-desc">
+              A chief's infant son disappears in the night. Torches of dried guinea corn stalk are lit across the community, beginning a tradition that will outlive the memory of why it started.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <span class="timeline-era">Generations Later</span>
+            <h3 class="timeline-title">Early Community Celebrations</h3>
+            <p class="timeline-desc">
+              What began as an urgent search becomes an annual remembrance. Families gather at dusk, elders retell the story, and children carry their first torches alongside their parents.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <span class="timeline-era">20th Century</span>
+            <h3 class="timeline-title">Expansion Across Northern Ghana</h3>
+            <p class="timeline-desc">
+              The festival spreads beyond its place of origin, observed by Dagomba, Mamprusi, Gonja and other communities across the north, each adding its own local rhythm and procession route.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <span class="timeline-era">Today</span>
+            <h3 class="timeline-title">Present Day Celebrations</h3>
+            <p class="timeline-desc">
+              Bugum Chugu is now celebrated by communities at home and abroad, drawing visitors, researchers, and the diaspora back to witness — and increasingly, to document and share — the lighting of the torches.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+                     4. VIDEO SHOWCASE
+                     ============================================ -->
+    <section class="video-section section-pad" id="videos">
+      <div class="container">
+        <span class="eyebrow reveal">In Motion</span>
+        <h2 class="section-heading reveal reveal-delay-1">Watch the Fire Festival</h2>
+
+        <div class="video-grid">
+          <div class="video-card reveal" data-video-src="Fire1.mp4" data-video-type="file" tabindex="0" role="button" aria-label="Play video: Lighting of the Torches">
+            <img src="images_gallery3.jpg" alt="" loading="lazy">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
+            <span class="video-label">Lighting of the Torches<span>2026 · KuKuo, Tamale</span></span>
+          </div>
+
+          <div class="video-card reveal reveal-delay-1" data-video-src="Ise.mp4" data-video-type="file" tabindex="0" role="button" aria-label="Play video: The Night Procession">
+            <img src="images_gallery6.jpg" alt="" loading="lazy">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
+            <span class="video-label">The Night Procession<span>2026 · Kamina,
+              Tamale</span></span>
+          </div>
+
+          <div class="video-card reveal reveal-delay-2"
+            data-video-src="AQOUdJ-u1Blxw96zXSr6mT5hVWLcR-TUt3nFkPb347NStpopnzBxRlJN3CLTWGC66qQx49V8BjAEABMZQXhLu0eN.mp4"
+            data-video-type="file" tabindex="0" role="button" aria-label="Play
+            video: Elders Tell the Story">
+            <img src="images_gallery5.jpg" alt="" loading="lazy">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
+            <span class="video-label">The Celebrations Continue<span>Culture is
+              Real</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="modal-overlay" id="videoModal" role="dialog" aria-modal="true" aria-label="Video player">
+      <button class="modal-close" id="videoModalClose" aria-label="Close video">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+      <div class="video-modal-content" id="videoModalContent"></div>
+    </div>
+
+    <!-- ============================================
+                     5. FESTIVAL GALLERY
+                     ============================================ -->
+    <!--<section class="gallery-section section-pad" id="gallery">
+              <div class="container">
+                <span class="eyebrow reveal">In Pictures</span>
+                <h2 class="section-heading reveal reveal-delay-1">Moments From Past Celebrations</h2>
+
+                <div class="gallery-grid" id="galleryGrid">
+                  <div class="gallery-item span-tall reveal" data-full="https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?w=1400&q=85" data-caption="Torches lit at dusk, Tamale 2024" tabindex="0" role="button" aria-label="View image: Torches lit at dusk, Tamale 2024">
+                    <img src="https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?w=500&q=70" alt="Torches lit at dusk during the Fire Festival" loading="lazy">
+                  </div>
+                  <div class="gallery-item span-short reveal reveal-delay-1" data-full="https://images.unsplash.com/photo-1533230050111-12bcb6e8a8c2?w=1400&q=85" data-caption="The procession begins" tabindex="0" role="button" aria-label="View image: The procession begins">
+                    <img src="https://images.unsplash.com/photo-1533230050111-12bcb6e8a8c2?w=500&q=70" alt="Procession beginning at night" loading="lazy">
+                  </div>
+                  <div class="gallery-item span-mid reveal reveal-delay-2" data-full="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1400&q=85" data-caption="Elders leading the chant" tabindex="0" role="button" aria-label="View image: Elders leading the chant">
+                    <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&q=70" alt="Community elders during the festival" loading="lazy">
+                  </div>
+                  <div class="gallery-item span-short reveal reveal-delay-3" data-full="https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?w=1400&q=85" data-caption="Children carrying their first torches" tabindex="0" role="button" aria-label="View image: Children carrying their first torches">
+                    <img src="https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?w=500&q=70" alt="Children with torches" loading="lazy">
+                  </div>
+                  <div class="gallery-item span-mid reveal" data-full="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1400&q=85" data-caption="The crowd gathers at the chief's palace" tabindex="0" role="button" aria-label="View image: The crowd gathers at the chief's palace">
+                    <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=500&q=70" alt="Crowd gathered for the festival" loading="lazy">
+                  </div>
+                  <div class="gallery-item span-tall reveal reveal-delay-1" data-full="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1400&q=85" data-caption="A line of fire across the savanna" tabindex="0" role="button" aria-label="View image: A line of fire across the savanna">
+                    <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=500&q=70" alt="Line of torch fires across the savanna" loading="lazy">
+                  </div>
+                  <div class="gallery-item span-short reveal reveal-delay-2" data-full="https://images.unsplash.com/photo-1525909002-1b05e0c869d8?w=1400&q=85" data-caption="Drumming through the night" tabindex="0" role="button" aria-label="View image: Drumming through the night">
+                    <img src="https://images.unsplash.com/photo-1525909002-1b05e0c869d8?w=500&q=70" alt="Drummers during the festival" loading="lazy">
+                  </div>
+                  <div class="gallery-item span-mid reveal reveal-delay-3" data-full="https://images.unsplash.com/photo-1473773508845-188df298d2d1?w=1400&q=85" data-caption="Dawn after the procession" tabindex="0" role="button" aria-label="View image: Dawn after the procession">
+                    <img src="https://images.unsplash.com/photo-1473773508845-188df298d2d1?w=500&q=70" alt="Dawn light after the festival night" loading="lazy">
+                  </div>
+                </div>
+              </div>
+            </section>-->
+
+    <!-- Lightbox Modal -->
+    <div class="modal-overlay" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <button class="modal-close" id="lightboxClose" aria-label="Close photo viewer">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+      <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 18l-6-6 6-6" /></svg>
+      </button>
+      <div class="lightbox-content">
+        <img id="lightboxImg" src="" alt="">
+        <span class="lightbox-counter" id="lightboxCounter"></span>
+      </div>
+      <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6" /></svg>
+      </button>
+    </div>
+
+    <!-- ============================================
+                     6. CULTURAL IMPORTANCE
+                     ============================================ -->
+    <section class="culture-section section-pad" id="culture">
+      <div class="container">
+        <span class="eyebrow reveal">Beyond the Flame</span>
+        <h2 class="section-heading reveal reveal-delay-1">Why the Fire Festival Matters</h2>
+
+        <div class="culture-grid">
+          <div class="culture-card reveal">
+            <div class="culture-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
+            </div>
+            <h3>Unity</h3>
+            <p>
+              The search for the prince was never a solo act. Every household lighting a torch made the festival a single community moving as one.
+            </p>
+          </div>
+          <div class="culture-card reveal reveal-delay-1">
+            <div class="culture-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 21V8l9-6 9 6v13" /><path d="M9 21V12h6v9" /></svg>
+            </div>
+            <h3>Heritage</h3>
+            <p>
+              A story carried by voice, not paper, for generations — surviving because each cohort chose to pass it to the next.
+            </p>
+          </div>
+          <div class="culture-card reveal reveal-delay-2">
+            <div class="culture-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3" /><circle cx="6" cy="16" r="3" /><circle cx="18" cy="16" r="3" /><path d="M12 11v2M8 16h2M14 16h2" /></svg>
+            </div>
+            <h3>Community</h3>
+            <p>
+              Neighbours, elders, and children take part in the same procession — a yearly reminder that no one searches alone.
+            </p>
+          </div>
+          <div class="culture-card reveal reveal-delay-3">
+            <div class="culture-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2v6M12 22v-6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24" /></svg>
+            </div>
+            <h3>Tradition</h3>
+            <p>
+              Rituals — the route walked, the chants sung — repeated faithfully enough that even their smallest details carry meaning.
+            </p>
+          </div>
+          <div class="culture-card reveal">
+            <div class="culture-icon">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+            </div>
+            <h3>Cultural Identity</h3>
+            <p>
+              For Dagomba and neighbouring communities, Bugum Chugu is a marker of who we are — recognised at home and across the diaspora.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+                     7. COMMUNITY CONTRIBUTIONS
+                     ============================================ -->
+    <section class="contribute-section section-pad" id="contribute">
+      <div class="container">
+        <span class="eyebrow reveal">Add Your Voice</span>
+        <h2 class="section-heading reveal reveal-delay-1">Share Your Festival Memory</h2>
+        <p class="contribute-intro reveal reveal-delay-2">
+          Were you part of a Fire Festival celebration? Share your memories, photos, videos, or stories and help preserve our cultural heritage for future generations.
+        </p>
+
+        <form class="contribute-form reveal reveal-delay-3" id="contributeForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fullName">Full Name <span class="req">*</span></label>
+              <input class="form-input" type="text" id="fullName" name="fullName" placeholder="e.g. Abdul-Rahman Mahama" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="location">Location / Town <span class="req">*</span></label>
+              <input class="form-input" type="text" id="location" name="location" placeholder="e.g. Tamale" required>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" for="message">Festival Message <span class="req">*</span></label>
+            <textarea class="form-textarea" id="message" name="message" placeholder="Tell us about your memory of the Fire Festival..." required></textarea>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" id="imageDropLabel">Upload Images</label>
+            <div class="dropzone" id="imageDropzone">
+              <svg class="dropzone-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><path d="M17 8l-5-5-5 5" /><path d="M12 3v12" /></svg>
+              <p class="dropzone-text">
+                <strong>Click to upload</strong> or drag and drop images here
+              </p>
+              <p class="dropzone-hint">
+                JPG, PNG up to 10MB each · multiple files allowed
+              </p>
+              <input type="file" id="imageInput" accept="image/*" multiple aria-labelledby="imageDropLabel">
+            </div>
+            <div class="file-previews" id="imagePreviews"></div>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" id="videoDropLabel">Upload Videos</label>
+            <div class="dropzone" id="videoDropzone">
+              <svg class="dropzone-icon" viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z" /><rect x="1" y="5" width="15" height="14" rx="2" /></svg>
+              <p class="dropzone-text">
+                <strong>Click to upload</strong> or drag and drop videos here
+              </p>
+              <p class="dropzone-hint">
+                MP4, MOV up to 100MB each · multiple files allowed
+              </p>
+              <input type="file" id="videoInput" accept="video/*" multiple aria-labelledby="videoDropLabel">
+            </div>
+            <div class="file-previews" id="videoPreviews"></div>
+          </div>
+
+          <div class="form-submit-row">
+            <button type="submit" class="btn btn-primary" id="submitBtn">Submit Your Memory</button>
+            <span class="form-status" id="formStatus">Thank you — your memory has been received.</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================================
+                     8. COMMUNITY STORIES
+                     ============================================ -->
+    <section class="stories-section section-pad" id="stories">
+      <div class="container">
+        <span class="eyebrow reveal">Voices From Home</span>
+        <h2 class="section-heading reveal reveal-delay-1">Messages From The Community</h2>
+
+        <div class="stories-grid" id="storiesGrid">
+          <div class="story-card featured reveal">
+            <span class="story-quote-mark" aria-hidden="true">"</span>
+            <p class="story-card-text">
+              My grandfather carried me on his shoulders during my first Bugum Chugu. I still remember the smell of the burning stalks and the sound of everyone singing as we walked. Forty years later, I bring my own grandchildren.
+            </p>
+            <div class="story-card-footer">
+              <div class="story-card-author">
+                <span class="author-avatar">AM</span>
+                <div>
+                  <span class="author-name">Awini Mahama</span><br>
+                  <span class="author-town">Tamale</span>
+                  <span class="story-date">Shared March 2024</span>
+                </div>
+              </div>
+              <button class="story-like-btn" data-likes="48"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg><span class="like-count">48</span></button>
+            </div>
+          </div>
+
+          <div class="story-card reveal reveal-delay-1">
+            <span class="story-quote-mark" aria-hidden="true">"</span>
+            <p class="story-card-text">
+              I moved abroad ten years ago, but every year my family sends me videos from the procession. Watching it from afar still brings me right back to standing in that crowd as a child.
+            </p>
+            <div class="story-card-footer">
+              <div class="story-card-author">
+                <span class="author-avatar">FZ</span>
+                <div>
+                  <span class="author-name">Fati Zakaria</span><br>
+                  <span class="author-town">Yendi → London</span>
+                  <span class="story-date">Shared Feb 2024</span>
+                </div>
+              </div>
+              <button class="story-like-btn" data-likes="27"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg><span class="like-count">27</span></button>
+            </div>
+          </div>
+
+          <div class="story-card reveal reveal-delay-2">
+            <span class="story-quote-mark" aria-hidden="true">"</span>
+            <p class="story-card-text">
+              As a teacher, I bring my students to the festival every year so they understand it's not just spectacle — it's our history, told in fire instead of books.
+            </p>
+            <div class="story-card-footer">
+              <div class="story-card-author">
+                <span class="author-avatar">SI</span>
+                <div>
+                  <span class="author-name">Sulemana Iddrisu</span><br>
+                  <span class="author-town">Savelugu</span>
+                  <span class="story-date">Shared Jan 2024</span>
+                </div>
+              </div>
+              <button class="story-like-btn" data-likes="33"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg><span class="like-count">33</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+                     9. FESTIVAL STATISTICS
+                     ============================================ -->
+    <section class="stats-section section-pad" id="stats">
+      <div class="container">
+        <span class="eyebrow reveal">By The Numbers</span>
+        <h2 class="section-heading reveal reveal-delay-1">A Living Tradition, Measured</h2>
+
+        <div class="stats-grid">
+          <div class="stat-card reveal">
+            <div class="stat-number" data-count="120" data-suffix="+">
+              0
+            </div>
+            <div class="stat-label">
+              Years Celebrated
+            </div>
+          </div>
+          <div class="stat-card reveal reveal-delay-1">
+            <div class="stat-number" data-count="40" data-suffix="+">
+              0
+            </div>
+            <div class="stat-label">
+              Communities Participating
+            </div>
+          </div>
+          <div class="stat-card reveal reveal-delay-2">
+            <div class="stat-number" data-count="2400" data-suffix="+">
+              0
+            </div>
+            <div class="stat-label">
+              Photos Shared
+            </div>
+          </div>
+          <div class="stat-card reveal reveal-delay-3">
+            <div class="stat-number" data-count="650" data-suffix="+">
+              0
+            </div>
+            <div class="stat-label">
+              Stories Submitted
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================
+             10. CALL TO ACTION
+             ============================================ -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <span class="eyebrow reveal">Your Turn</span>
+      <h2 class="cta-heading reveal reveal-delay-1">Keep The Tradition Alive</h2>
+      <p class="cta-text reveal reveal-delay-2">
+        Every torch carries a story. Share yours and help preserve the history of the Fire Festival for future generations.
+      </p>
+      <div class="cta-actions reveal reveal-delay-3">
+        <a href="#contribute" class="btn btn-primary">Share Your Story</a>
+        <a href="#contribute" class="btn btn-ghost cta-photo-btn">Upload Photos</a>
+        <a href="#contribute" class="btn btn-ghost cta-video-btn">Upload Video</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+             11. FOOTER
+             ============================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="flame-dot" aria-hidden="true"></span>Bugum Chugu
+          </div>
+          <p class="footer-tagline">
+            A living archive of the Fire Festival — its history, its people, and the memories that keep it burning.
+          </p>
+          <!--<div class="footer-social" style="margin-top:24px;">
+                                <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z" /></svg></a>
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM17.5 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" /></svg></a>
+                                <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2s-.2-1.5-.8-2.1c-.8-.8-1.7-.8-2.1-.9C15.9 4 12 4 12 4s-3.9 0-6.7.2c-.4 0-1.3.1-2.1.9-.6.6-.8 2.1-.8 2.1S2.2 9 2.2 10.8v1.4c0 1.8.2 3.6.2 3.6s.2 1.5.8 2.1c.8.8 1.9.8 2.3.9 1.7.2 7.5.2 7.5.2s3.9 0 6.7-.2c.4-.1 1.3-.1 2.1-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.6v-1.4c0-1.8-.2-3.6-.2-3.6zM9.9 14.6V8.8l5.4 2.9-5.4 2.9z" /></svg></a>
+                              </div>--->
+        </div>
+
+        <div>
+          <div class="footer-col-title">
+            Explore
+          </div>
+          <ul class="footer-links">
+            <li><a href="#story">About</a></li>
+            <li><a href="#timeline">History</a></li>
+            <!--  <li><a href="#gallery">Gallery</a></li>-->
+            <li><a href="#videos">Videos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">
+            Community
+          </div>
+          <ul class="footer-links">
+            <li><a href="#stories">Community Stories</a></li>
+            <li><a href="#contribute">Share a Memory</a></li>
+            <li><a href="#culture">Why It Matters</a></li>
+            <li><a href="#stats">Our Numbers</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">
+            Contact
+          </div>
+          <ul class="footer-links" id="contact">
+            <li><a href="mailto:0555358325a@gamil.com">Send an Email</a></li>
+            <li><a href="tel:+233555358325">Call Us</a></li>
+            <li><a href="https://wa.me/233241234567" target="_blank">
+              Chat with us on WhatsApp
+            </a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Bugum Chugu Heritage Project. Built with respect for those who carry the story.</span>
+        <span>Made for the community.</span>
+        <span>Yomyom WebBuild<br><sub>Build your online presence with Us</sub></span>
+
+
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+    "use strict";
+
+    /* ============================================
+     PRELOADER: hide once page is ready
+     ============================================ */
+    var pageLoader = document.getElementById('pageLoader');
+    var loaderShownAt = Date.now();
+    var MIN_LOADER_MS = 600;
+
+    function hideLoader(){
+    var elapsed = Date.now() - loaderShownAt;
+    var wait = Math.max(0, MIN_LOADER_MS - elapsed);
+    setTimeout(function(){
+    pageLoader.classList.add('loader-hidden');
+    document.body.style.overflow = '';
+    }, wait);
+    }
+    document.body.style.overflow = 'hidden';
+    if (document.readyState === 'complete'){
+    hideLoader();
+    } else {
+    window.addEventListener('load', hideLoader);
+    // Safety net in case 'load' is delayed by a slow external resource
+    setTimeout(hideLoader, 4000);
+    }
+
+    /* ============================================
+     NAV: scroll state + mobile toggle
+     ============================================ */
+    var siteNav = document.getElementById('siteNav');
+    var navToggle = document.getElementById('navToggle');
+    var navLinks = document.getElementById('navLinks');
+
+    function onScrollNav(){
+    if (window.scrollY > 40){ siteNav.classList.add('scrolled'); } else { siteNav.classList.remove('scrolled'); }
+    }
+    window.addEventListener('scroll', onScrollNav, {passive: true});
+    onScrollNav();
+
+    navToggle.addEventListener('click', function(){
+    var isOpen = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('active', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true': 'false');
+    });
+    navLinks.addEventListener('click', function(e){
+    if (e.target.tagName === 'A'){
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', 'false');
+    }
+    });
+
+    /* ============================================
+     SCROLL REVEAL (IntersectionObserver)
+     ============================================ */
+    var revealEls = document.querySelectorAll('.reveal');
+    var revealObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+    if (entry.isIntersecting){
+    entry.target.classList.add('is-visible');
+    revealObserver.unobserve(entry.target);
+    }
+    });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function(el){ revealObserver.observe(el); });
+
+    /* ============================================
+     TIMELINE: spine fill + ember dot tracking scroll
+     ============================================ */
+    var timelineWrap = document.getElementById('timelineWrap');
+    var timelineFill = document.getElementById('timelineFill');
+    var timelineEmber = document.getElementById('timelineEmber');
+    var timelineItems = document.querySelectorAll('.timeline-item');
+
+    var timelineItemObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+    if (entry.isIntersecting){ entry.target.classList.add('is-visible'); }
+    });
+    }, { threshold: 0.4 });
+    timelineItems.forEach(function(item){ timelineItemObserver.observe(item); });
+
+    function updateTimelineProgress(){
+    if (!timelineWrap) return;
+    var rect = timelineWrap.getBoundingClientRect();
+    var viewportH = window.innerHeight;
+    var total = rect.height;
+    if (total <= 0) return;
+
+    // progress: 0 when top of wrap is at bottom of viewport, 1 when bottom of wrap reaches ~40% viewport
+    var start = viewportH * 0.85;
+    var end = viewportH * 0.35;
+    var traveled = start - rect.top;
+    var span = (rect.height + start - end);
+    var progress = traveled / span;
+    progress = Math.max(0, Math.min(1, progress));
+
+    var pixelHeight = progress * total;
+    timelineFill.style.height = pixelHeight + 'px';
+    timelineEmber.style.top = pixelHeight + 'px';
+    }
+    window.addEventListener('scroll', updateTimelineProgress, {passive: true});
+    window.addEventListener('resize', updateTimelineProgress);
+    updateTimelineProgress();
+
+    /* ============================================
+     VIDEO MODAL
+     ============================================ */
+    var videoModal = document.getElementById('videoModal');
+    var videoModalContent = document.getElementById('videoModalContent');
+    var videoModalClose = document.getElementById('videoModalClose');
+    var videoCards = document.querySelectorAll('.video-card');
+    var lastFocusedEl = null;
+
+    function openVideoModal(src, type){
+    lastFocusedEl = document.activeElement;
+    if (type === 'youtube'){
+    videoModalContent.innerHTML = '<iframe src="'+src+'?autoplay=1&rel=0" title="Festival video" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
+    } else {
+    videoModalContent.innerHTML = '<video src="'+src+'" controls autoplay playsinline></video>';
+    }
+    videoModal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    videoModalClose.focus();
+    }
+    function closeVideoModal(){
+    videoModal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    videoModalContent.innerHTML = '';
+    if (lastFocusedEl) lastFocusedEl.focus();
+    }
+    videoCards.forEach(function(card){
+    function trigger(){
+    openVideoModal(card.getAttribute('data-video-src'), card.getAttribute('data-video-type'));
+    }
+    card.addEventListener('click', trigger);
+    card.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); trigger(); }
+    });
+    });
+    videoModalClose.addEventListener('click', closeVideoModal);
+    videoModal.addEventListener('click', function(e){
+    if (e.target === videoModal){ closeVideoModal(); }
+    });
+
+    /* ============================================
+     GALLERY LIGHTBOX
+     ============================================ */
+    var galleryItems = Array.prototype.slice.call(document.querySelectorAll('.gallery-item'));
+    var lightboxModal = document.getElementById('lightboxModal');
+    var lightboxImg = document.getElementById('lightboxImg');
+    var lightboxClose = document.getElementById('lightboxClose');
+    var lightboxPrev = document.getElementById('lightboxPrev');
+    var lightboxNext = document.getElementById('lightboxNext');
+    var lightboxCounter = document.getElementById('lightboxCounter');
+    var currentIndex = 0;
+    var lbLastFocused = null;
+
+    function showLightboxImage(index){
+    currentIndex = (index + galleryItems.length) % galleryItems.length;
+    var item = galleryItems[currentIndex];
+    lightboxImg.src = item.getAttribute('data-full');
+    lightboxImg.alt = item.getAttribute('data-caption') || '';
+    lightboxCounter.textContent = (currentIndex + 1) + ' / ' + galleryItems.length;
+    }
+    function openLightbox(index){
+    lbLastFocused = document.activeElement;
+    showLightboxImage(index);
+    lightboxModal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    lightboxClose.focus();
+    }
+    function closeLightbox(){
+    lightboxModal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    if (lbLastFocused) lbLastFocused.focus();
+    }
+    galleryItems.forEach(function(item, idx){
+    function trigger(){ openLightbox(idx); }
+    item.addEventListener('click', trigger);
+    item.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); trigger(); }
+    });
+    });
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', function(){ showLightboxImage(currentIndex - 1); });
+    lightboxNext.addEventListener('click', function(){ showLightboxImage(currentIndex + 1); });
+    lightboxModal.addEventListener('click', function(e){
+    if (e.target === lightboxModal){ closeLightbox(); }
+    });
+
+    /* Swipe support for lightbox (mobile) */
+    var touchStartX = 0;
+    lightboxModal.addEventListener('touchstart', function(e){
+    touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+    lightboxModal.addEventListener('touchend', function(e){
+    var touchEndX = e.changedTouches[0].screenX;
+    var diff = touchEndX - touchStartX;
+    if (Math.abs(diff) > 50){
+    if (diff < 0){ showLightboxImage(currentIndex + 1); } else { showLightboxImage(currentIndex - 1); }
+    }
+    }, {passive: true});
+
+    /* ============================================
+     SHARED: ESC key closes whichever modal is open
+     ============================================ */
+    document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+    if (videoModal.classList.contains('is-open')) closeVideoModal();
+    if (lightboxModal.classList.contains('is-open')) closeLightbox();
+    }
+    if (lightboxModal.classList.contains('is-open')){
+    if (e.key === 'ArrowLeft'){ showLightboxImage(currentIndex - 1); }
+    if (e.key === 'ArrowRight'){ showLightboxImage(currentIndex + 1); }
+    }
+    });
+
+    /* ============================================
+     DRAG & DROP FILE UPLOADS WITH PREVIEWS
+     ============================================ */
+    function setupDropzone(dropzoneId, inputId, previewsId, kind){
+    var dropzone = document.getElementById(dropzoneId);
+    var input = document.getElementById(inputId);
+    var previews = document.getElementById(previewsId);
+    var files = [];
+
+    function renderPreviews(){
+    previews.innerHTML = '';
+    files.forEach(function(file, idx){
+    var url = URL.createObjectURL(file);
+    var wrap = document.createElement('div');
+    wrap.className = 'file-preview';
+
+    if (kind === 'image'){
+    var img = document.createElement('img');
+    img.src = url;
+    img.alt = file.name;
+    wrap.appendChild(img);
+    } else {
+    var vid = document.createElement('video');
+    vid.src = url;
+    vid.muted = true;
+    wrap.appendChild(vid);
+    var tag = document.createElement('span');
+    tag.className = 'file-tag';
+    tag.textContent = 'video';
+    wrap.appendChild(tag);
+    }
+
+    var removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.className = 'file-remove';
+    removeBtn.setAttribute('aria-label', 'Remove ' + file.name);
+    removeBtn.textContent = '×';
+    removeBtn.addEventListener('click', function(ev){
+    ev.stopPropagation();
+    files.splice(idx, 1);
+    renderPreviews();
+    });
+    wrap.appendChild(removeBtn);
+    previews.appendChild(wrap);
+    });
+    }
+
+    function addFiles(fileList){
+    Array.prototype.forEach.call(fileList, function(f){
+    var isValid = kind === 'image' ? f.type.indexOf('image/') === 0: f.type.indexOf('video/') === 0;
+    if (isValid){ files.push(f); }
+    });
+    renderPreviews();
+    }
+
+    input.addEventListener('change', function(){
+    addFiles(input.files);
+    input.value = '';
+    });
+
+    ['dragenter', 'dragover'].forEach(function(evt){
+    dropzone.addEventListener(evt, function(e){
+    e.preventDefault();
+    dropzone.classList.add('drag-over');
+    });
+    });
+    ['dragleave', 'drop'].forEach(function(evt){
+    dropzone.addEventListener(evt, function(e){
+    e.preventDefault();
+    dropzone.classList.remove('drag-over');
+    });
+    });
+    dropzone.addEventListener('drop', function(e){
+    if (e.dataTransfer && e.dataTransfer.files){ addFiles(e.dataTransfer.files); }
+    });
+
+    return { getFiles: function(){ return files; }, reset: function(){ files = []; renderPreviews(); } };
+    }
+
+    var imageUploader = setupDropzone('imageDropzone', 'imageInput', 'imagePreviews', 'image');
+    var videoUploader = setupDropzone('videoDropzone', 'videoInput', 'videoPreviews', 'video');
+
+    /* ============================================
+     CONTRIBUTE FORM SUBMIT
+     ============================================ */
+    var contributeForm = document.getElementById('contributeForm');
+    var formStatus = document.getElementById('formStatus');
+    var storiesGrid = document.getElementById('storiesGrid');
+
+    contributeForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!contributeForm.checkValidity()){
+    contributeForm.reportValidity();
+    return;
+    }
+
+    var name = document.getElementById('fullName').value.trim();
+    var town = document.getElementById('location').value.trim();
+    var message = document.getElementById('message').value.trim();
+
+    /* Add the new story to the Community Stories section so it's visible immediately.
+       NOTE for integration: this is a front-end-only preview. To persist submissions,
+       wire this up the same way as the other Yomyom editors — e.g. Supabase insert +
+       EmailJS notification — using the same plain-fetch pattern as realestate-supabase.js. */
+    var card = document.createElement('div');
+    card.className = 'story-card reveal is-visible';
+    var initials = name.split(' ').map(function(p){ return p[0] || ''; }).slice(0, 2).join('').toUpperCase();
+    var today = new Date();
+    var dateStr = today.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+
+    card.innerHTML =
+    '<span class="story-quote-mark" aria-hidden="true">"</span>' +
+    '<p class="story-card-text"></p>' +
+    '<div class="story-card-footer">' +
+    '<div class="story-card-author">' +
+    '<span class="author-avatar"></span>' +
+    '<div><span class="author-name"></span><br><span class="author-town"></span>' +
+    '<span class="story-date">Shared ' + dateStr + '</span></div>' +
+    '</div>' +
+    '<button class="story-like-btn" data-likes="0"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="like-count">0</span></button>' +
+    '</div>';
+
+    card.querySelector('.story-card-text').textContent = message;
+    card.querySelector('.author-avatar').textContent = initials;
+    card.querySelector('.author-name').textContent = name;
+    card.querySelector('.author-town').textContent = town;
+
+    storiesGrid.insertBefore(card, storiesGrid.firstChild);
+    attachLikeHandler(card.querySelector('.story-like-btn'));
+
+    formStatus.classList.add('show');
+    contributeForm.reset();
+    imageUploader.reset();
+    videoUploader.reset();
+
+    setTimeout(function(){ formStatus.classList.remove('show'); }, 5000);
+    });
+
+    /* ============================================
+     LIKE BUTTONS
+     ============================================ */
+    function attachLikeHandler(btn){
+    btn.addEventListener('click', function(){
+    var liked = btn.classList.toggle('liked');
+    var countEl = btn.querySelector('.like-count');
+    var base = parseInt(btn.getAttribute('data-likes'), 10) || 0;
+    countEl.textContent = liked ? (base + 1): base;
+    });
+    }
+    document.querySelectorAll('.story-like-btn').forEach(attachLikeHandler);
+
+    /* ============================================
+     ANIMATED STAT COUNTERS
+     ============================================ */
+    var statNumbers = document.querySelectorAll('.stat-number');
+    function animateCount(el){
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    var suffix = el.getAttribute('data-suffix') || '';
+    var duration = 1600;
+    var startTime = null;
+
+    function step(timestamp){
+    if (!startTime) startTime = timestamp;
+    var progress = Math.min((timestamp - startTime) / duration, 1);
+    var eased = 1 - Math.pow(1 - progress, 3);
+    var value = Math.floor(eased * target);
+    el.textContent = value.toLocaleString() + (progress >= 1 ? suffix: '');
+    if (progress < 1){ requestAnimationFrame(step); }
+    }
+    requestAnimationFrame(step);
+    }
+    var statObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+    if (entry.isIntersecting){
+    animateCount(entry.target);
+    statObserver.unobserve(entry.target);
+    }
+    });
+    }, { threshold: 0.5 });
+    statNumbers.forEach(function(el){ statObserver.observe(el); });
+
+    })();
+  </script>
+
+</body>
+</html>
